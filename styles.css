@@ -1312,14 +1312,52 @@ p {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: auto;
-    padding-top: 100px;
-    padding-bottom: var(--space-xl);
+    /* tall enough to show text area + expert image in bg */
+    min-height: 100svh;
+    padding-top: 90px;
+    padding-bottom: 0;
+    align-items: flex-start;
+  }
+
+  /* On mobile the picture/img inside hero-bg should be anchored to the top
+     so the dark gym ceiling shows at the top (text area) and the expert
+     appears in the lower half of the background */
+  .hero-bg img {
+    object-position: top center;
+  }
+
+  /* Change the overlay direction: opaque at top (text readable),
+     transparent toward the middle/bottom (expert visible) */
+  .hero-bg::after {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 5, 5, 0.80) 0%,
+      rgba(5, 5, 5, 0.55) 30%,
+      rgba(5, 5, 5, 0.15) 55%,
+      transparent 72%
+    );
+  }
+
+  .hero .container {
+    padding-bottom: 56svh; /* leave lower half free for the expert in bg */
   }
 
   .hero-content {
-    max-width: 90%;
-    text-align: left;
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero .subtitle {
+    max-width: 100%;
+  }
+
+  .hero-cta-area {
+    align-items: center;
+  }
+
+  .hero-badge {
+    margin: 0 auto;
   }
 
   .cards-grid {
