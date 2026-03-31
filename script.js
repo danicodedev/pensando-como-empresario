@@ -3,7 +3,7 @@
 // Landing Page Interactions
 // ============================================
 
-document.addEventListener('DOMContentLoaded', () => {
+function initLandingPage() {
 
   // --- Navbar scroll behavior ---
   const navbar = document.getElementById('navbar');
@@ -240,4 +240,148 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }
 
-});
+  const quizRoot = document.getElementById('quiz-interactive');
+  if (quizRoot) {
+    const metaEl = document.getElementById('quiz-meta');
+    const progressEl = document.getElementById('quiz-progress');
+    const questionEl = document.getElementById('quiz-question');
+    const optionsEl = document.getElementById('quiz-options');
+    const bodyEl = document.getElementById('quiz-body');
+    const resultEl = document.getElementById('quiz-result');
+    const resultTextEl = document.getElementById('quiz-result-text');
+    const restartBtn = document.getElementById('quiz-restart');
+    const progressBars = progressEl ? Array.from(progressEl.querySelectorAll('.quiz-bar')) : [];
+
+    const questions = [
+      {
+        id: 'obstacle',
+        text: 'Qual é o seu maior problema hoje?',
+        options: [
+          { label: 'Ouvir “está caro” dos alunos', value: 'price' },
+          { label: 'Não saber atrair clientes novos', value: 'acquisition' },
+          { label: 'Perder alunos na sazonalidade', value: 'seasonality' },
+          { label: 'Não saber entrar no digital', value: 'digital' }
+        ]
+      },
+      {
+        id: 'goal',
+        text: 'Quanto você quer faturar por mês?',
+        options: [
+          { label: 'R$ 3.000 – R$ 5.000', value: '3-5' },
+          { label: 'R$ 5.000 – R$ 8.000', value: '5-8' },
+          { label: 'R$ 8.000 – R$ 12.000', value: '8-12' },
+          { label: 'Mais de R$ 12.000', value: '12+' }
+        ]
+      },
+      {
+        id: 'stage',
+        text: 'Qual descreve melhor sua situação hoje?',
+        options: [
+          { label: 'Tenho alunos, mas falta previsibilidade', value: 'unstable' },
+          { label: 'Minha agenda está lotada, mas ganho pouco', value: 'busy_low' },
+          { label: 'Estou começando / tenho poucos alunos', value: 'starting' },
+          { label: 'Quero estruturar o digital sem bagunçar o presencial', value: 'hybrid' }
+        ]
+      }
+    ];
+
+    let currentIndex = 0;
+    const answers = {};
+
+    const setProgress = (index) => {
+      progressBars.forEach((bar, i) => {
+        bar.classList.toggle('is-active', i <= index);
+      });
+    };
+
+    const getDiagnosisText = () => {
+      const obstacle = answers.obstacle;
+      const goal = answers.goal;
+      const stage = answers.stage;
+
+      const goalText = goal === '12+'
+        ? 'mais de R$ 12.000'
+        : goal
+          ? `R$ ${goal.replace('-', '.000 – R$ ')}.000`
+          : '';
+
+      const stageHint = stage === 'starting'
+        ? 'O foco inicial é montar base e rotina de execução para ganhar tração rápido.'
+        : stage === 'busy_low'
+          ? 'O próximo passo é aumentar margem: posicionamento, oferta e percepção de valor.'
+          : stage === 'hybrid'
+            ? 'O próximo passo é criar estrutura e produto digital sem perder o controle do presencial.'
+            : 'O próximo passo é criar previsibilidade com processo de captação, vendas e retenção.';
+
+      if (obstacle === 'price') {
+        return `Você precisa aprender a comunicar valor antes de tentar cobrar mais. A trilha de Marketing e Vendas te mostra como posicionar seu serviço, lidar com a objeção “está caro” e fechar alunos sem desconto. Meta de ${goalText || 'crescimento'} fica muito mais possível quando você tem processo. ${stageHint}`;
+      }
+
+      if (obstacle === 'acquisition') {
+        return `Seu gargalo principal é captação de clientes. Você precisa de um sistema simples e repetível para atrair leads, conversar com segurança e transformar interesse em aluno. Meta de ${goalText || 'crescimento'} fica mais leve quando existe fluxo constante. ${stageHint}`;
+      }
+
+      if (obstacle === 'seasonality') {
+        return `Seu gargalo principal é previsibilidade. Você precisa de uma estratégia de retenção + rotina comercial para não depender de “boa fase”. Meta de ${goalText || 'crescimento'} vira consequência quando você controla agenda e recorrência. ${stageHint}`;
+      }
+
+      return `Seu gargalo principal é entrar no digital com clareza. Você precisa de uma estrutura que valide oferta, organize conteúdo e gere vendas sem travar o presencial. Meta de ${goalText || 'crescimento'} fica mais próxima quando você tem um caminho simples de implementação. ${stageHint}`;
+    };
+
+    const renderQuestion = () => {
+      const q = questions[currentIndex];
+      if (!q) return;
+
+      if (metaEl) metaEl.textContent = `Pergunta ${currentIndex + 1} de ${questions.length}`;
+      if (questionEl) questionEl.textContent = q.text;
+      if (optionsEl) optionsEl.innerHTML = '';
+
+      setProgress(currentIndex);
+
+      q.options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'quiz-option';
+        btn.textContent = opt.label;
+        btn.addEventListener('click', () => {
+          answers[q.id] = opt.value;
+          Array.from(optionsEl.querySelectorAll('.quiz-option')).forEach((b) => {
+            b.disabled = true;
+            b.classList.remove('is-selected');
+          });
+          btn.classList.add('is-selected');
+          setTimeout(() => {
+            currentIndex += 1;
+            if (currentIndex >= questions.length) {
+              setProgress(questions.length - 1);
+              if (bodyEl) bodyEl.hidden = true;
+              if (resultEl) resultEl.hidden = false;
+              if (resultTextEl) resultTextEl.textContent = getDiagnosisText();
+              return;
+            }
+            renderQuestion();
+          }, 160);
+        });
+        optionsEl.appendChild(btn);
+      });
+    };
+
+    const restart = () => {
+      currentIndex = 0;
+      Object.keys(answers).forEach((k) => delete answers[k]);
+      if (resultEl) resultEl.hidden = true;
+      if (bodyEl) bodyEl.hidden = false;
+      renderQuestion();
+    };
+
+    if (restartBtn) restartBtn.addEventListener('click', restart);
+    restart();
+  }
+
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLandingPage);
+} else {
+  initLandingPage();
+}
