@@ -802,6 +802,87 @@ p {
   color: var(--red-primary);
 }
 
+.comparison-section {
+  background: var(--white-muted);
+}
+
+.comparison-section h2 {
+  color: var(--bg-black);
+}
+
+.comparison-section p {
+  color: var(--gray-dark);
+}
+
+.comparison-table-wrap {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 14px 18px;
+  font-size: 0.95rem;
+}
+
+.comparison-table thead th {
+  background: rgba(0, 0, 0, 0.04);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-align: left;
+  color: var(--bg-black);
+}
+
+.comparison-table tbody tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.comparison-table tbody td {
+  color: rgba(0, 0, 0, 0.82);
+}
+
+.comparison-table .col-center {
+  width: 160px;
+  text-align: center;
+}
+
+.comparison-table .col-no {
+  color: var(--red-primary);
+}
+
+.comparison-table .col-yes {
+  color: #16A34A;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.mark-no {
+  color: var(--red-primary);
+  background: rgba(204, 0, 0, 0.08);
+}
+
+.mark-yes {
+  color: #16A34A;
+  background: rgba(34, 197, 94, 0.12);
+}
+
 /* --- EXPERT SECTION --- */
 .expert-section {
   background: var(--bg-black);
@@ -1549,6 +1630,82 @@ p {
 
   .benefits-grid {
     grid-template-columns: 1fr;
+  }
+
+  .comparison-table-wrap {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .comparison-table {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .comparison-table thead {
+    display: none;
+  }
+
+  .comparison-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .comparison-table tr {
+    display: block;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
+  .comparison-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    background: transparent;
+  }
+
+  .comparison-table tbody tr:nth-child(even) td {
+    background: transparent;
+  }
+
+  .comparison-table td:first-child {
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--bg-black);
+    justify-content: flex-start;
+    padding-bottom: 8px;
+  }
+
+  .comparison-table td[data-label] {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .comparison-table td[data-label]::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .comparison-table .col-center {
+    width: auto;
+    text-align: right;
+  }
+
+  .mark {
+    width: 32px;
+    height: 32px;
   }
 
   .social-proof-bar {
