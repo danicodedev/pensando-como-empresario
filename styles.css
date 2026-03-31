@@ -274,9 +274,28 @@ p {
   justify-content: space-between;
 }
 
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  text-decoration: none;
+}
+
 .navbar-logo img {
   height: 45px;
   width: auto;
+}
+
+.navbar-brand-name {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .navbar-cta .btn {
@@ -1814,6 +1833,15 @@ p {
   .navbar-cta {
     display: none;
     /* Evita vazamento lateral; no mobile temos o floating CTA de qualquer jeito */
+  }
+
+  .navbar-logo {
+    width: 100%;
+  }
+
+  .navbar-brand-name {
+    margin-left: auto;
+    font-size: 0.92rem;
   }
 
   .hero .subtitle {
