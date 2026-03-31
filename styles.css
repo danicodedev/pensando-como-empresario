@@ -383,37 +383,75 @@ p {
 
 /* --- SOCIAL PROOF BAR --- */
 .social-proof-bar {
-  background: var(--bg-charcoal);
-  border-top: 1px solid rgba(204, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(204, 0, 0, 0.2);
-  padding: var(--space-md) 0;
+  background: linear-gradient(90deg, var(--red-dark) 0%, var(--red-primary) 50%, var(--red-dark) 100%);
+  padding: var(--space-xl) 0;
 }
 
 .social-proof-bar .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--space-xl);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--space-lg);
 }
 
-.proof-item {
+.proof-top {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.proof-item .icon {
-  font-size: 1.3rem;
-}
-
-.proof-item .number {
-  color: var(--red-primary);
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  font-size: 0.85rem;
   font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.proof-top-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.proof-top-item + .proof-top-item {
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  padding-left: var(--space-md);
+}
+
+.proof-top-item .icon {
+  font-size: 1rem;
+}
+
+.proof-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 44px);
+  align-items: start;
+  text-align: center;
+}
+
+.proof-stat {
+  padding: 6px 10px;
+}
+
+.proof-stat .value {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-weight: 900;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.05;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.proof-stat .label {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* --- SECTION BASE --- */
@@ -1437,9 +1475,33 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .social-proof-bar .container {
-    flex-direction: column;
-    gap: var(--space-sm);
+  .social-proof-bar {
+    padding: var(--space-lg) 0;
+  }
+
+  .proof-top {
+    justify-content: center;
+  }
+
+  .proof-top-item {
+    white-space: normal;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-pill);
+    padding: 8px 12px;
+  }
+
+  .proof-top-item + .proof-top-item {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .proof-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .proof-stat .label {
+    font-size: 0.8rem;
   }
 
   .testimonial-cards {
@@ -1480,6 +1542,10 @@ p {
 @media (max-width: 480px) {
   .container {
     padding: 0 var(--space-sm);
+  }
+
+  .proof-stats {
+    grid-template-columns: 1fr;
   }
 
   .btn {
