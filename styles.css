@@ -827,6 +827,29 @@ p {
   align-items: center;
 }
 
+.expert-info {
+  max-width: 560px;
+}
+
+@media (min-width: 1025px) {
+  .expert-section {
+    background-image: url('assets/secao-conheca-o-rodrigo-desktop.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .expert-section::before {
+    content: none;
+  }
+
+  .expert-grid {
+    grid-template-columns: 1fr;
+    justify-items: end;
+    min-height: clamp(520px, 55vw, 720px);
+  }
+}
+
 .expert-image {
   position: relative;
 }
