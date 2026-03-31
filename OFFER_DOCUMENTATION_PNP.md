@@ -23,7 +23,7 @@ Um curso online completo para Personal Trainers no Brasil, que combina conteúdo
 - **Power 6/1 Online** = nome antigo
 - **Pensando como Empresário** = nome mais atual da oferta
 - **Personal na Prática** = marca guarda-chuva
-- **Profissional TOP11** = área de membros/comunidade
+
 
 ---
 
@@ -416,7 +416,6 @@ Promessa aspiracional que vai além de emagrecimento ou hipertrofia. Amplia o co
 - Marca Personal na Prática
 - Nome de Felipe Rabelo citado em materiais/módulos
 - Metodologias próprias: Power 6/1, A.T.P.C.P., D.O., L.P.Q., Quarteto Fantástico
-- Comunidade Profissional TOP11
 - Promessas numéricas fortes
 - Prova social por mensagens/depoimentos
 - Histórico da marca desde materiais mais antigos
@@ -447,7 +446,6 @@ Promessa aspiracional que vai além de emagrecimento ou hipertrofia. Amplia o co
 3. O módulo 7 parece menos documentado; ao reutilizar, vale reforçar plano de negócios, escalabilidade, digital e crescimento.
 4. O **caderno de atividades** é um diferencial importante e deve ser valorizado.
 5. Em algum momento a oferta parece ter trabalhado com lançamento/abertura de vagas; hoje o link sugere modelo perpétuo.
-6. **Profissional TOP11** funciona bem como nome de comunidade/tribo.
 7. O tom de voz tende a ser brasileiro, energético, informal, motivacional e direto.
 8. O número **11** parece ter valor simbólico de marca e pode ser preservado.
 9. A promessa de retenção/fidelização longa do aluno é um ponto emocional relevante.
