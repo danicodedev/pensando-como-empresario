@@ -1908,6 +1908,7 @@ p {
 
   .navbar-brand-name {
     margin-left: auto;
+    text-align: right;
     font-size: 0.92rem;
   }
 
