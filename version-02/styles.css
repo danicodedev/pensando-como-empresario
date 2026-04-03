@@ -1370,6 +1370,60 @@ p {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
+.video-poster {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.video-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-poster-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
+}
+
+.video-poster-play::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-42%, -50%);
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 18px solid rgba(255, 255, 255, 0.92);
+}
+
+.video-poster:hover .video-poster-play {
+  transform: translate(-50%, -50%) scale(1.03);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.video-poster:focus-visible {
+  outline: 3px solid rgba(204, 0, 0, 0.55);
+  outline-offset: 3px;
+}
+
 .testimonial-video iframe {
   width: 100%;
   aspect-ratio: 16 / 9;

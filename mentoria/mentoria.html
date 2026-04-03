@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentoria Personal na Prática — 2 Meses para Transformar sua Carreira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & CUSTOM PROPERTIES ===== */
+    :root {
+      --red: #E62020;
+      --red-dark: #A31212;
+      --bg-deep: #050505;
+      --bg-surface: #111111;
+      --bg-surface-light: #1A1A1A;
+      --text-main: #F4F4F5;
+      --text-muted: #A1A1AA;
+      --border-subtle: rgba(255, 255, 255, 0.1);
+      
+      --font-heading: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+      
+      --container-w: 1280px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .container {
+      max-width: var(--container-w);
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    .title-xl {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+
+    .title-lg {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .title-md {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .text-red { color: var(--red); }
+    .text-outline {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.4);
+    }
+
+    .tag-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+    .tag-label::before {
+      content: '';
+      width: 12px; height: 2px;
+      background: var(--red);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 1.2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+
+    .btn-red {
+      background: var(--red);
+      color: white;
+    }
+
+    .btn-red::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+    .btn-red:hover::before { left: 100%; }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+    /* ===== FLOATING NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1000px;
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-brand span { color: var(--red); }
+
+    .nav-cta {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 100px;
+    }
+
+    /* ===== HERO SECTION (ASYMMETRICAL) ===== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding-top: 5rem; /* Space for nav */
+      position: relative;
+    }
+
+    .hero-content {
+      padding-left: 5%;
+      padding-right: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-img-wrap {
+      height: 100vh;
+      position: relative;
+      clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-position: center 20%;
+      filter: grayscale(20%) contrast(1.1);
+    }
+
+    .hero-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg-deep) 0%, transparent 50%);
+    }
+
+    .hero-stats-row {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 2rem;
+    }
+
+    .stat-item h4 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-item p { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* ===== MARQUEE ===== */
+    .marquee-container {
+      background: var(--red);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 2px solid var(--red-dark);
+      border-bottom: 2px solid var(--red-dark);
+      transform: rotate(-1deg) scale(1.02);
+      margin-top: -2rem;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .marquee-content {
+      display: inline-block;
+      animation: scrollLeft 25s linear infinite;
+    }
+
+    .marquee-content span {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--bg-deep);
+      margin: 0 2rem;
+    }
+    .marquee-content span.outline {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0,0,0,0.5);
+    }
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== PAIN POINTS (BENTO GRID) ===== */
+    .section { padding: 8rem 0; }
+    
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(200px, auto);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .bento-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .bento-card:hover { border-color: var(--red); }
+
+    .bento-card.large { grid-column: span 2; grid-row: span 2; background: var(--bg-surface-light); }
+    .bento-card.tall { grid-row: span 2; }
+
+    .bento-icon {
+      font-size: 2.5rem;
+      margin-bottom: auto;
+      padding-bottom: 2rem;
+    }
+
+    .bento-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    .bento-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ===== THE METHOD (EDITORIAL OVERLAP) ===== */
+    .method-section { position: relative; }
+    .method-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .method-img {
+      position: relative;
+    }
+    .method-img img {
+      border-radius: 1rem;
+      filter: grayscale(100%);
+      transition: filter 0.5s ease;
+    }
+    .method-img:hover img { filter: grayscale(0%); }
+    
+    .method-img::after {
+      content: '';
+      position: absolute;
+      top: -2rem; left: -2rem;
+      width: 100%; height: 100%;
+      border: 2px solid var(--red);
+      border-radius: 1rem;
+      z-index: -1;
+    }
+
+    .method-content { padding-right: 2rem; }
+    
+    .check-list { margin-top: 2rem; }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+    .check-list li::before {
+      content: '■';
+      color: var(--red);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    /* ===== MODULES / 8 ENCONTROS (IMAGE MOSAIC) ===== */
+    .modules-section {
+      background: var(--bg-surface);
+      padding-bottom: 4rem;
+    }
+    
+    .modules-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .mosaic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0; /* Seamless grid */
+      border: 1px solid var(--border-subtle);
+    }
+
+    .module-card {
+      aspect-ratio: 4/5;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      cursor: crosshair;
+    }
+
+    .module-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%) brightness(0.2);
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
+      z-index: 1;
+    }
+
+    .module-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(230, 32, 32, 0.9) 0%, rgba(5,5,5,0.4) 100%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 2;
+    }
+
+    .module-card:hover .module-bg {
+      transform: scale(1.1);
+      filter: grayscale(0%) brightness(0.5);
+    }
+    .module-card:hover .module-overlay { opacity: 1; }
+
+    .module-content {
+      position: absolute;
+      inset: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      z-index: 3;
+    }
+
+    .module-num {
+      font-family: var(--font-heading);
+      font-size: 5rem;
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(255,255,255,0.1);
+      transition: color 0.4s ease;
+    }
+    
+    .module-card:hover .module-num { color: white; }
+
+    .module-text {
+      margin-top: auto;
+      transform: translateY(2rem);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .module-card:hover .module-text {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .module-text h4 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .module-text p { font-size: 0.9rem; color: rgba(255,255,255,0.9); }
+
+    /* ===== EXPERT (STICKY SCROLL) ===== */
+    .expert-section {
+      padding: 0; /* Handled by internal layout */
+    }
+
+    .expert-layout {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .expert-content {
+      flex: 1;
+      padding: 8rem 5% 8rem 10%;
+      background: var(--bg-deep);
+    }
+
+    .expert-image {
+      flex: 1;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .expert-image img {
+      width: 100%;
+      height: 100%;
+      object-position: top center;
+    }
+
+    .expert-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    /* ===== TRANSFORMATION (SPLIT SCREEN) ===== */
+    .transform-section {
+      background: var(--bg-surface);
+      position: relative;
+    }
+    
+    .transform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .t-col { padding: 4rem; }
+    
+    .t-before {
+      background: var(--bg-deep);
+      border-right: 1px dashed rgba(255,255,255,0.2);
+    }
+    .t-before h3 { color: var(--text-muted); }
+    .t-before li { color: var(--text-muted); opacity: 0.8; }
+    
+    .t-after {
+      background: linear-gradient(145deg, var(--red-dark) 0%, var(--bg-surface) 100%);
+    }
+
+    .t-col h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .t-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .t-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1.1rem;
+    }
+
+    /* ===== PRICING (RECEIPT STYLE / BRUTALIST) ===== */
+    .pricing-section {
+      padding: 8rem 0;
+      background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-108.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .pricing-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.95); /* Heavy overlay */
+    }
+
+    .pricing-container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .pricing-card {
+      background: var(--bg-deep);
+      border: 2px solid var(--red);
+      padding: 4rem;
+      text-align: center;
+      box-shadow: 20px 20px 0px rgba(230, 32, 32, 0.2);
+    }
+
+    .price-strike { text-decoration: line-through; color: var(--text-muted); font-size: 1.2rem; }
+    .price-value {
+      font-family: var(--font-heading);
+      font-size: 6rem;
+      font-weight: 900;
+      line-height: 1;
+      color: white;
+      margin: 1rem 0;
+    }
+    .price-value span { font-size: 2rem; vertical-align: top; margin-right: 0.5rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 8rem; }
+      .hero-content { padding: 0 5%; }
+      .hero-img-wrap { clip-path: none; height: 60vh; margin-top: 3rem; }
+      .hero-img-wrap::after { background: linear-gradient(to top, var(--bg-deep) 0%, transparent 50%); }
+      .hero-stats-row { justify-content: center; }
+      
+      .expert-layout { flex-direction: column-reverse; }
+      .expert-image { position: relative; height: 60vh; }
+      .expert-content { padding: 4rem 5%; }
+
+      .pricing-container { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-card.large, .bento-card.tall { grid-column: span 1; grid-row: span 1; }
+      
+      .method-grid { grid-template-columns: 1fr; }
+      .mosaic-grid { grid-template-columns: repeat(2, 1fr); }
+      
+      .transform-grid { grid-template-columns: 1fr; }
+      .t-before { border-right: none; border-bottom: 1px dashed rgba(255,255,255,0.2); }
+      .t-col { padding: 2rem; }
+      
+      .pricing-card { padding: 2rem; }
+      .price-value { font-size: 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .mosaic-grid { grid-template-columns: 1fr; }
+      .hero-stats-row { flex-direction: column; gap: 1rem; }
+      .navbar { width: 95%; padding: 0.5rem 0.5rem 0.5rem 1rem; }
+      .nav-cta { padding: 0.6rem 1rem; font-size: 0.9rem; }
+    }
+
+    /* Animation Classes */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING NAV -->
+  <nav class="navbar">
+    <div class="nav-brand"><span>///</span> PNP</div>
+    <a href="#inscricao" class="btn btn-red nav-cta">Garantir Vaga</a>
+  </nav>
+
+  <!-- HERO (ASYMMETRICAL) -->
+  <section class="hero">
+    <div class="hero-content reveal active">
+      <div class="tag-label">Vagas Limitadas • 2 Meses ao Vivo</div>
+      <h1 class="title-xl">
+        Pare de treinar<br>
+        <span class="text-outline">no escuro.</span><br>
+        Comece a <span class="text-red">lucrar.</span>
+      </h1>
+      <p style="font-size: 1.25rem; color: var(--text-muted); margin-top: 1.5rem; max-width: 500px;">
+        A Mentoria que transforma sua técnica em um negócio rentável, previsível e escalável. Sem teoria vazia, apenas execução guiada.
+      </p>
+      
+      <div class="hero-stats-row">
+        <div class="stat-item">
+          <h4>08</h4>
+          <p>Encontros ao vivo</p>
+        </div>
+        <div class="stat-item">
+          <h4>20k+</h4>
+          <p>Profissionais formados</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <!-- Usando a imagem 116 para o Hero -->
+      <img src="https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-116-1024x683.jpg" alt="Rodrigo Assi Mentoria">
+    </div>
+  </section>
+
+  <!-- MARQUEE TAPE -->
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <span>Mentoria Ao Vivo</span>
+      <span class="outline">Método Power 6/1</span>
+      <span>Venda Treinos Online</span>
+      <span class="outline">Instagram Milionário</span>
+      <span>Mentoria Ao Vivo</span>
+      <span class="outline">Método Power 6/1</span>
+      <span>Venda Treinos Online</span>
+      <span class="outline">Instagram Milionário</span>
+    </div>
+  </div>
+
+  <!-- PAIN POINTS (BENTO GRID) -->
+  <section class="section container" id="identifique-se">
+    <div class="tag-label reveal">O Ciclo da Exaustão</div>
+    <h2 class="title-lg reveal">Você está preso <br>nesse <span class="text-red">cenário?</span></h2>
+    
+    <div class="bento-grid">
+      <div class="bento-card large reveal">
+        <div class="bento-icon">💸</div>
+        <h3>Trabalha muito,<br>ganha pouco</h3>
+        <p>A agenda está cheia, o cansaço é físico, mas a conta bancária não reflete o seu esforço diário no salão de musculação.</p>
+      </div>
+      <div class="bento-card reveal">
+        <div class="bento-icon">🤷</div>
+        <h3>Sabe treinar,<br>não vender</h3>
+        <p>Você é tecnicamente excelente, mas trava na hora de dar o preço e argumentar.</p>
+      </div>
+      <div class="bento-card tall reveal">
+        <div class="bento-icon">📉</div>
+        <h3>Refém da<br>Sazonalidade</h3>
+        <p>Janeiro e Dezembro são bons. O resto do ano é rezar para ninguém cancelar. Falta previsibilidade no seu fluxo de caixa e captação ativa.</p>
+      </div>
+      <div class="bento-card reveal">
+        <div class="bento-icon">📱</div>
+        <h3>Medo do<br>Digital</h3>
+        <p>Vê a concorrência crescendo online e não sabe como transformar seguidores em clientes pagantes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE METHOD (EDITORIAL OVERLAP) -->
+  <section class="section method-section container" id="o-que-e">
+    <div class="method-grid">
+      <div class="method-img reveal">
+        <!-- Usando a imagem 97 -->
+        <img src="https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-97-1024x682.jpg" alt="Mentoria em Grupo">
+      </div>
+      <div class="method-content reveal">
+        <div class="tag-label">A Solução</div>
+        <h2 class="title-lg" style="margin-bottom: 1.5rem;">2 Meses de <br><span class="text-red">Aceleração Real</span></h2>
+        <p style="font-size: 1.1rem; color: var(--text-muted);">
+          A Mentoria Personal na Prática não é um curso onde você recebe o login e é abandonado. É um acompanhamento em grupo ao vivo com Rodrigo Assi. Toda terça-feira, das 15h às 17h.
+        </p>
+        <ul class="check-list">
+          <li>Interação em tempo real. Nada de aulas gravadas de 3 anos atrás.</li>
+          <li>Sessões de Perguntas e Respostas focadas na sua dificuldade.</li>
+          <li>Aplicação imediata: aprenda na terça, venda na quarta.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES (IMAGE MOSAIC) -->
+  <section class="modules-section" id="encontros">
+    <div class="container modules-header reveal">
+      <div class="tag-label">Cronograma</div>
+      <h2 class="title-lg">Os 8 Encontros<br>da <span class="text-red">Transformação</span></h2>
+    </div>
+    
+    <!-- Usando as imagens fornecidas intercaladas -->
+    <div class="mosaic-grid">
+      <!-- Modulo 1 -->
+      <div class="module-card reveal">
+        <div class="module-bg" style="background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-108.jpg');"></div>
+        <div class="module-overlay"></div>
+        <div class="module-content">
+          <div class="module-num">01</div>
+          <div class="module-text">
+            <h4>Instagram Milionário</h4>
+            <p>Transforme seu perfil em uma máquina de captação. Posicionamento e conversão sem precisar fazer dancinha.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Modulo 2 -->
+      <div class="module-card reveal" style="transition-delay: 0.1s;">
+        <div class="module-bg" style="background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-35-1024x683.jpg');"></div>
+        <div class="module-overlay"></div>
+        <div class="module-content">
+          <div class="module-num">02</div>
+          <div class="module-text">
+            <h4>Venda Treinos Online</h4>
+            <p>A estrutura completa para criar, precificar e escalar sua consultoria online mantendo a qualidade.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Modulo 3 -->
+      <div class="module-card reveal" style="transition-delay: 0.2s;">
+        <div class="module-bg" style="background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-125-1024x683.jpg');"></div>
+        <div class="module-overlay"></div>
+        <div class="module-content">
+          <div class="module-num">03</div>
+          <div class="module-text">
+            <h4>Desafios Lucrativos</h4>
+            <p>Como estruturar grupos de desafios que geram alto impacto, resultados rápidos e caixa rápido.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Modulo 4 -->
+      <div class="module-card reveal" style="transition-delay: 0.3s;">
+        <div class="module-bg" style="background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-97-1024x682.jpg');"></div>
+        <div class="module-overlay"></div>
+        <div class="module-content">
+          <div class="module-num">04</div>
+          <div class="module-text">
+            <h4>Blindagem & Regras</h4>
+            <p>Como lidar com reposições, cancelamentos e criar contratos que valorizam seu tempo.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Modulo 5 -->
+      <div class="module-card reveal">
+        <div class="module-bg" style="background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-116-1024x683.jpg');"></div>
+        <div class="module-overlay"></div>
+        <div class="module-content">
+          <div class="module-num">05</div>
+          <div class="module-text">
+            <h4>A Arte da Venda</h4>
+            <p>Conceito de Equity. Técnicas para elevar seu valor percebido e extinguir a frase "tá muito caro".</p>
+          </div>
+        </div>
+      </div>
+      <!-- Modulo 6 -->
+      <div class="module-card reveal" style="transition-delay: 0.1s;">
+        <div class="module-bg" style="background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-108.jpg');"></div>
+        <div class="module-overlay"></div>
+        <div class="module-content">
+          <div class="module-num">06</div>
+          <div class="module-text">
+            <h4>O Jogo dos Números</h4>
+            <p>Gestão financeira realista. Saiba exatamente quanto cobrar para atingir suas metas de faturamento.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Modulo 7 -->
+      <div class="module-card reveal" style="transition-delay: 0.2s;">
+        <div class="module-bg" style="background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-97-1024x682.jpg');"></div>
+        <div class="module-overlay"></div>
+        <div class="module-content">
+          <div class="module-num">07</div>
+          <div class="module-text">
+            <h4>Periodização Real</h4>
+            <p>O que realmente funciona: intensidade, frequência e descanso para entregar resultados estéticos rápidos.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Modulo 8 -->
+      <div class="module-card reveal" style="transition-delay: 0.3s;">
+        <div class="module-bg" style="background-image: url('https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-35-1024x683.jpg');"></div>
+        <div class="module-overlay"></div>
+        <div class="module-content">
+          <div class="module-num text-red">08</div>
+          <div class="module-text">
+            <h4 class="text-red">Hot Seat (P&R)</h4>
+            <p>Método Power 6/1 aplicado e uma sessão inteira dedicada a analisar os SEUS problemas de negócio ao vivo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSFORMATION (SPLIT SCREEN) -->
+  <section class="section container">
+    <div class="transform-grid reveal">
+      <div class="t-col t-before">
+        <h3>Como é Hoje ☠️</h3>
+        <ul class="t-list">
+          <li>Fatura menos do que gostaria e trabalha 12h/dia.</li>
+          <li>Perde alunos em Janeiro e Julho (férias).</li>
+          <li>Escuta que a sua mensalidade "tá salgada".</li>
+          <li>Não tem segurança de caixa para o mês seguinte.</li>
+          <li>Posta treino no Instagram e ninguém compra.</li>
+        </ul>
+      </div>
+      <div class="t-col t-after">
+        <h3 style="color: white;">Com a Mentoria 🚀</h3>
+        <ul class="t-list">
+          <li>Faturamento escalável misturando presencial e online.</li>
+          <li>Agenda blindada contra sazonalidade.</li>
+          <li>Alunos pagam sorrindo porque percebem seu valor.</li>
+          <li>Processos claros: reposição e contrato bem definidos.</li>
+          <li>Sistema de captação digital rodando no automático.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERT (STICKY SCROLL) -->
+  <section class="expert-section" id="mentor">
+    <div class="expert-layout">
+      <div class="expert-content reveal">
+        <div class="tag-label">Quem te guia</div>
+        <h2 class="title-lg">Rodrigo<br><span class="text-red">Assi</span></h2>
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-top: 2rem;">
+          Não sou um aventureiro do marketing digital. Sou um <strong>Personal Trainer com 22 anos de trincheira</strong>. Já passei pelos exatos problemas que você enfrenta hoje no salão.
+        </p>
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-top: 1rem;">
+          Fui Preparador Físico de clube profissional (Campeão Invicto) e eleito <strong>Treinador do Ano pela FIEP Internacional em 2014</strong>. Criei métodos testados e validados por mais de 20.000 profissionais em todo o Brasil.
+        </p>
+
+        <div class="expert-stats-grid">
+          <div>
+            <h4 class="title-md text-red">22</h4>
+            <p style="color: var(--text-muted); text-transform: uppercase; font-size: 0.8rem;">Anos de Prática</p>
+          </div>
+          <div>
+            <h4 class="title-md text-red">270+</h4>
+            <p style="color: var(--text-muted); text-transform: uppercase; font-size: 0.8rem;">Cursos Ministrados</p>
+          </div>
+          <div>
+            <h4 class="title-md text-red">20k</h4>
+            <p style="color: var(--text-muted); text-transform: uppercase; font-size: 0.8rem;">Alunos Formados</p>
+          </div>
+          <div>
+            <h4 class="title-md text-red">04</h4>
+            <p style="color: var(--text-muted); text-transform: uppercase; font-size: 0.8rem;">Pós-Graduações</p>
+          </div>
+        </div>
+      </div>
+      <div class="expert-image">
+        <!-- Usando a imagem 125 -->
+        <img src="https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-125-1024x683.jpg" alt="Prof. Rodrigo Assi">
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING (BRUTALIST) -->
+  <section class="pricing-section" id="inscricao">
+    <div class="container pricing-container">
+      <div class="reveal">
+        <div class="tag-label">Decisão</div>
+        <h2 class="title-lg" style="margin-bottom: 1.5rem;">Qual o custo<br>de continuar<br><span class="text-red">parado?</span></h2>
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem;">
+          Um único contrato fechado aplicando as técnicas da mentoria já paga o seu investimento inteiro. Todo mês que você adia, é dinheiro deixado na mesa.
+        </p>
+        <ul class="check-list" style="border: none;">
+          <li>8 Encontros Ao Vivo no Zoom</li>
+          <li>Acesso ao Grupo Exclusivo de Networking</li>
+          <li>Sessões de P&R Personalizadas</li>
+        </ul>
+      </div>
+      
+      <div class="pricing-card reveal">
+        <div style="font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 0.1em; color: var(--red);">
+          Vagas Limitadas
+        </div>
+        <div class="price-strike">De R$ 7.500,00</div>
+        <div class="price-value"><span>R$</span>5.000</div>
+        <p style="color: var(--text-muted); margin-bottom: 3rem;">À vista ou em até 12x no cartão.</p>
+        
+        <a href="#" class="btn btn-red" style="width: 100%;">Garantir Minha Vaga Agora</a>
+        
+        <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          🔒 Pagamento 100% Seguro
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: var(--bg-deep); padding: 2rem 0; border-top: 1px solid var(--border-subtle); text-align: center;">
+    <div class="nav-brand" style="justify-content: center; margin-bottom: 1rem;"><span>///</span> PNP</div>
+    <p style="color: var(--text-muted); font-size: 0.85rem;">
+      © 2026 Mentoria Personal na Prática. Prof. Esp. Rodrigo Assi — CREF 004242-G/RO<br>
+      Todos os direitos reservados.
+    </p>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations (reveal effect)
+    document.addEventListener("DOMContentLoaded", () => {
+      const reveals = document.querySelectorAll(".reveal");
+      
+      const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+      };
+      
+      const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        });
+      }, revealOptions);
+      
+      reveals.forEach(reveal => {
+        revealOnScroll.observe(reveal);
+      });
+    });
+  </script>
+</body>
+</html>
