@@ -178,6 +178,13 @@
       gap: 0.5rem;
     }
     .nav-brand img { height: 34px; width: auto; display: block; }
+    .nav-brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
     .nav-cta {
       padding: 0.8rem 1.5rem;
@@ -252,6 +259,12 @@
       margin-top: -2rem;
       position: relative;
       z-index: 10;
+    }
+
+    @media (max-height: 860px) and (min-width: 769px) {
+      .marquee-container {
+        margin-top: 0;
+      }
     }
     
     .marquee-content {
@@ -692,6 +705,7 @@
       .section.container { padding-left: 7%; padding-right: 7%; }
       .bento-grid { grid-template-columns: 1fr; }
       .bento-card.large, .bento-card.tall { grid-column: span 1; grid-row: span 1; }
+      .bento-card.wide { grid-column: span 1; }
       
       .method-grid { grid-template-columns: 1fr; }
       .mosaic-grid { grid-template-columns: repeat(2, 1fr); }
@@ -732,7 +746,10 @@
 
   <!-- FLOATING NAV -->
   <nav class="navbar">
-    <div class="nav-brand"><img src="../assets/logo-personal-pensando-como-empresario.png" alt="Logo Personal na Prática"></div>
+    <div class="nav-brand">
+      <img src="../assets/logo-personal-pensando-como-empresario.png" alt="Logo Personal na Prática">
+      <span class="nav-brand-title">MENTORIA P.N.P.</span>
+    </div>
     <a href="#inscricao" class="btn btn-red nav-cta">Garantir Vaga</a>
   </nav>
 
