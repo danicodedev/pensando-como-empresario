@@ -277,14 +277,9 @@
       font-size: 2rem;
       font-weight: 900;
       text-transform: uppercase;
-      color: var(--bg-deep);
+      color: rgb(255, 255, 255);
       margin: 0 2rem;
     }
-    .marquee-content span.outline {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(0,0,0,0.5);
-    }
-
     @keyframes scrollLeft {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -346,7 +341,8 @@
         "img header"
         "img content";
       align-items: center;
-      gap: 4rem;
+      column-gap: 4rem;
+      row-gap: 1.2rem;
     }
 
     .method-img {
@@ -988,7 +984,7 @@
   <section class="section container">
     <div class="transform-grid reveal">
       <div class="t-col t-before">
-        <h3>Como é Hoje ☠️</h3>
+        <h3>Como Você é Hoje ☠️</h3>
         <ul class="t-list">
           <li>Fatura menos do que gostaria e trabalha 12h/dia.</li>
           <li>Perde alunos em Janeiro e Julho (férias).</li>
@@ -998,7 +994,7 @@
         </ul>
       </div>
       <div class="t-col t-after">
-        <h3 style="color: white;">Com a Mentoria 🚀</h3>
+        <h3 style="color: white;">Você Com a Mentoria 🚀</h3>
         <ul class="t-list">
           <li>Faturamento escalável misturando presencial e online.</li>
           <li>Agenda blindada contra sazonalidade.</li>
@@ -1075,7 +1071,7 @@
           Um único contrato fechado aplicando as técnicas da mentoria já paga o seu investimento inteiro. Todo mês que você adia, é dinheiro deixado na mesa.
         </p>
         <ul class="check-list" style="border: none;">
-          <li>8 Encontros Ao Vivo no Zoom</li>
+          <li>8 Encontros Ao Vivo </li>
           <li>Acesso ao Grupo Exclusivo de Networking</li>
           <li>Sessões de P&R Personalizadas</li>
         </ul>
