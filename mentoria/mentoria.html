@@ -342,12 +342,16 @@
     .method-grid {
       display: grid;
       grid-template-columns: 5fr 7fr;
+      grid-template-areas:
+        "img header"
+        "img content";
       align-items: center;
       gap: 4rem;
     }
 
     .method-img {
       position: relative;
+      grid-area: img;
     }
     .method-img img {
       border-radius: 1rem;
@@ -366,7 +370,8 @@
       z-index: -1;
     }
 
-    .method-content { padding-right: 2rem; }
+    .method-header { grid-area: header; padding-right: 2rem; }
+    .method-content { grid-area: content; padding-right: 2rem; }
     
     .check-list { margin-top: 2rem; }
     .check-list li {
@@ -707,7 +712,15 @@
       .bento-card.large, .bento-card.tall { grid-column: span 1; grid-row: span 1; }
       .bento-card.wide { grid-column: span 1; }
       
-      .method-grid { grid-template-columns: 1fr; }
+      .method-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "img"
+          "content";
+      }
+      .method-header { padding-right: 0; }
+      .method-content { padding-right: 0; }
       .mosaic-grid { grid-template-columns: repeat(2, 1fr); }
 
       .hero {
@@ -846,9 +859,11 @@
         <!-- Usando a imagem 97 -->
         <img src="https://www.personalnapratica.com.br/wp-content/uploads/2019/06/Personal-Na-Pratica-97-1024x682.jpg" alt="Mentoria em Grupo">
       </div>
-      <div class="method-content reveal">
+      <div class="method-header reveal">
         <div class="tag-label">A Solução</div>
         <h2 class="title-lg" style="margin-bottom: 1.5rem;">2 Meses de <br><span class="">Aceleração Real</span></h2>
+      </div>
+      <div class="method-content reveal">
         <p style="font-size: 1.1rem; color: var(--text-muted);">
           A Mentoria Personal na Prática não é um curso onde você recebe o login e é abandonado. É um acompanhamento ao vivo com Rodrigo Assi. Toda terça-feira, das 15h às 17h.
         </p>
