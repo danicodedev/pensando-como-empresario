@@ -746,6 +746,28 @@
       .nav-cta { padding: 0.6rem 1rem; font-size: 0.9rem; }
     }
 
+    @media (max-width: 390px) {
+      .navbar { gap: 0.75rem; }
+      .nav-brand { min-width: 0; }
+      .nav-brand img { flex-shrink: 0; }
+      .nav-brand-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 46vw;
+      }
+      .nav-cta {
+        white-space: nowrap;
+        line-height: 1;
+        padding: 0.55rem 0.85rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+        flex-shrink: 0;
+      }
+    }
+
     /* Animation Classes */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
