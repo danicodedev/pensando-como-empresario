@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links - Personal na Prática</title>
+  
+  <!-- Fontes (mesmas do resto do projeto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #050505;
+      --text-color: #ffffff;
+      --red: #ea0e0e;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --container-w: 600px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: url('background.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--text-color);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-w);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* ===== PROFILE HEADER ===== */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .profile-img-wrap {
+      width: clamp(180px, 32vw, 240px);
+      height: clamp(180px, 32vw, 240px);
+      border-radius: 50%;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 14px rgba(234, 14, 14, 0.18));
+    }
+
+    .profile-handle {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+    .profile-handle:hover {
+      color: var(--red);
+    }
+
+    /* ===== LINKS CONTAINER ===== */
+    .links-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .link-item {
+      display: block;
+      width: min(300px, 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.05);
+      background-color: #111;
+    }
+
+    .link-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(234, 14, 14, 0.15);
+      border-color: rgba(234, 14, 14, 0.3);
+    }
+
+    .link-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: inherit;
+    }
+
+    /* Loading state para evitar piscadas feias */
+    .link-img:not([src]) {
+      background: linear-gradient(90deg, #111 0%, #222 50%, #111 100%);
+      background-size: 200% 100%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header: Foto + Arroba -->
+    <header class="profile-header">
+      <div class="profile-img-wrap">
+        <img src="profile.png" alt="Profile" class="profile-img">
+      </div>
+      <a href="https://instagram.com/personalnapratica" target="_blank" class="profile-handle">@PERSONALNAPRATICA</a>
+    </header>
+
+    <!-- Lista de Links Gerada via JS -->
+    <main class="links-container" id="links-container">
+      <!-- Links injetados aqui -->
+    </main>
+  </div>
+
+  <script>
+    /**
+     * DADOS DOS LINKS
+     * Edite este array para adicionar, remover ou alterar a ordem dos links.
+     * 
+     * url: Link de destino. Ex: "https://seusite.com" ou "#"
+     * img: Caminho da imagem do card. Ex: "1.png"
+     * alt: Texto alternativo para acessibilidade (opcional, mas recomendado).
+     */
+    const linksData = [
+      { url: "https://pay.hotmart.com/R105076041X?off=qx8hqc0z&checkoutMode=10", img: "1.png", alt: "Curso Online Personal na Prática" },
+      { url: "#", img: "2.png", alt: "Mentoria Ao Vivo" },
+      { url: "#", img: "3.png", alt: "Desafios de Treino Agora ou Nunca" },
+      { url: "https://www.youtube.com/rodrigoassipersonalnapratica", img: "4.png", alt: "Imagem Link 4" },
+      { url: "https://api.whatsapp.com/send?1=pt_BR&phone=5511976563187&text=Faaaala,+Personal+na+Pr%C3%A1tica.+Eu+quero+entrar+na+lista+VIP.", img: "5.png", alt: "Imagem Link 5" }
+    ];
+
+    // Função para renderizar os links
+    function renderLinks() {
+      const container = document.getElementById('links-container');
+      
+      const linksHTML = linksData.map(link => `
+        <a href="${link.url}" class="link-item" target="_blank" rel="noopener noreferrer">
+          <img src="${link.img}" alt="${link.alt}" class="link-img" loading="lazy">
+        </a>
+      `).join('');
+
+      container.innerHTML = linksHTML;
+    }
+
+    // Renderiza ao carregar
+    document.addEventListener('DOMContentLoaded', renderLinks);
+  </script>
+
+</body>
+</html>
